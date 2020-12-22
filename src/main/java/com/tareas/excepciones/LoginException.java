@@ -1,4 +1,4 @@
-package com.biblioteca.excepciones;
+package com.tareas.excepciones;
 
 public class LoginException extends Exception {
     

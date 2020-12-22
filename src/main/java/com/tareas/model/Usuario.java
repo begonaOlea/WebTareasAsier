@@ -8,17 +8,17 @@ public class Usuario implements Serializable{
     private String nombreUsuario;
     private String password;
 
-    public Usuario(String email, String password) {
-        this.nombreUsuario = email;
+    public Usuario(String nombreUsuario, String password) {
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
     }
 
-    public String getEmail() {
+    public String getNombreUsuario() {
         return nombreUsuario;
     }
 
-    public void setEmail(String email) {
-        this.nombreUsuario = email;
+    public void setNombreUsuario(String enombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

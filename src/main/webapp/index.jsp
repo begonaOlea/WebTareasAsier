@@ -8,7 +8,7 @@
     <body>
         <h1>Tareas</h1>
 
-        <form action="login" method="post" >
+        <form action="listas-tareas" method="post" >
             <div class="form-group">
                 <label for="usuario">Usuario</label>
                 <input type="text" class="form-control" name="usuario"
@@ -22,7 +22,7 @@
                 <div class="col">${ requestScope.msgErrorPwd }</div>
             </div>
             <div class="container">              
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Login (Ver listas)</button>
             </div>
         </form>
 

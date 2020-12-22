@@ -1,7 +1,7 @@
 
 package com.tareas.model;
 
-import com.biblioteca.excepciones.DBException;
+import com.tareas.excepciones.DBException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
