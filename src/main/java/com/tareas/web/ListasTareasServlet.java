@@ -18,7 +18,7 @@ public class ListasTareasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nombreUsuario = req.getParameter("usuario");
+        String usuario = req.getParameter("usuario");
         String pwd = req.getParameter("pwd");
 
         String msgErrorUsuario = null;
@@ -27,7 +27,7 @@ public class ListasTareasServlet extends HttpServlet {
 
         boolean valido = true;
 
-        if (nombreUsuario == null || nombreUsuario.trim().length() == 0) {
+        if (usuario == null || usuario.trim().length() == 0) {
             msgErrorUsuario = "Debe indicar el email del usuario";
             valido = false;
         }
@@ -42,7 +42,7 @@ public class ListasTareasServlet extends HttpServlet {
             try {
                 HttpSession sesion = req.getSession();
                 LoginService servicio = new LoginService();
-                servicio.login(nombreUsuario, pwd, sesion);
+                servicio.login(usuario, pwd, sesion);
 
             } catch (LoginException ex) {
                 msgErrorLogin = ex.getMessage();
@@ -54,6 +54,8 @@ public class ListasTareasServlet extends HttpServlet {
         String jspAMostrar = "";
         if (valido) {
             jspAMostrar = "listas-tareas.jsp";
+            req.setAttribute("usuario", usuario);
+            req.setAttribute("pwd", pwd);
         } else {
             jspAMostrar = "index.jsp";
             req.setAttribute("msgErrorEmail", msgErrorUsuario);
