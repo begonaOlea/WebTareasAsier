@@ -35,12 +35,33 @@ public class DB {
     public static Collection<Tarea> getTareasToDoDeUsuario(String nombreUsuario) {
         Set<Tarea> tareasToDoDeUsuario = new HashSet<Tarea>();
         for (Tarea t : tareas.values()) {
-            if (t.getNombreUsuario().equals("nombreUsuario") && t.getEstado().equals("to do")) {
+            if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("to do")) {
                 tareasToDoDeUsuario.add(t);
             }
         }
         return tareasToDoDeUsuario;
     }    
+    
+    public static Collection<Tarea> getTareasInProgressDeUsuario(String nombreUsuario) {
+        Set<Tarea> tareasInProgressDeUsuario = new HashSet<Tarea>();
+        for (Tarea t : tareas.values()) {
+            if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("in progress")) {
+                tareasInProgressDeUsuario.add(t);
+            }
+        }
+        return tareasInProgressDeUsuario;
+    } 
+    
+    public static Collection<Tarea> getTareasDoneDeUsuario(String nombreUsuario) {
+        Set<Tarea> tareasDoneDeUsuario = new HashSet<Tarea>();
+        for (Tarea t : tareas.values()) {
+            if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("in progress")) {
+                tareasDoneDeUsuario.add(t);
+            }
+        }
+        return tareasDoneDeUsuario;
+    } 
+    
 
     public synchronized static void altaTarea(Tarea tarea) throws DBException {
         if (tareas.containsKey(tarea.getId())) {
