@@ -32,14 +32,14 @@ public class DB {
         return tareas.values();
     }
 
-    public static Collection<Tarea> getTareasDeUsuario(String nombreUsuario) {
-        Set<Tarea> tareasDeUsuario = new HashSet<Tarea>();
+    public static Collection<Tarea> getTareasToDoDeUsuario(String nombreUsuario) {
+        Set<Tarea> tareasToDoDeUsuario = new HashSet<Tarea>();
         for (Tarea t : tareas.values()) {
-            if (t.getNombreUsuario() == nombreUsuario) {
-                tareasDeUsuario.add(t);
+            if (t.getNombreUsuario().equals("nombreUsuario") && t.getEstado().equals("to do")) {
+                tareasToDoDeUsuario.add(t);
             }
         }
-        return tareasDeUsuario;
+        return tareasToDoDeUsuario;
     }    
 
     public synchronized static void altaTarea(Tarea tarea) throws DBException {
