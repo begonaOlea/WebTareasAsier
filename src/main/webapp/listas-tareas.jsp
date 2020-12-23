@@ -19,6 +19,8 @@
 
             <h1>Tareas de ${sessionScope.usuario.nombreUsuario}</h1> 
 
+            <br>
+            
             <hr/>
 
             <%
@@ -30,8 +32,6 @@
 
             <div class="row">
                 <div class="col">
-
-
 
                     <h3>Lista To Do</h3> 
 
@@ -102,7 +102,7 @@
                             <tr>
                                 <th scope="row"><%= t.getId()%></th>
                                 <td><%= t.getDescripcion()%></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a> </td>
+                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=bajar" >  <--  </a> </td>
                             </tr>
                             <% }%>
                         </tbody>
@@ -120,6 +120,11 @@
     </div>
 
 </body>
+
+<footer>
+    <%@include file="WEB-INF/vista/pie.jspf" %>
+</footer>
+
 </html>
 
 

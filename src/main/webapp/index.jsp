@@ -10,40 +10,48 @@
     <body>
         <%@include file="WEB-INF/vista/cabecera.jspf" %>
 
-        <form action="listas-tareas" method="post" >
-            <div class="form-group">
-                <label for="usuario">Usuario</label>
-                <input type="text" class="form-control" name="usuario"
-                       id="usuario" placeholder="Usuario">
-                <c:if test="${not empty requestScope.msgErrorUsuario }" >
-                    <div class="alert alert-danger" role="alert">
-                        ${ requestScope.msgErrorUsuario }
-                    </div>
-                </c:if>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Contraseña</label>
-                <input type="password" class="form-control" name="pwd"
-                       id="pwd" placeholder="Contraseña">
-                <c:if test="${not empty requestScope.msgErrorPwd }" >
-                    <div class="alert alert-danger" role="alert">
-                        ${ requestScope.msgErrorPwd }
-                    </div>
-                </c:if>
+        <div class="container">
 
-            </div>
-            <div class="container">              
-                <button type="submit" class="btn btn-primary">Login (Ver listas)</button>
-            </div>
-        </form>
+            <form action="listas-tareas" method="post" >
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" name="usuario"
+                           id="usuario" placeholder="Usuario">
+                    <c:if test="${not empty requestScope.msgErrorUsuario }" >
+                        <div class="alert alert-danger" role="alert">
+                            ${ requestScope.msgErrorUsuario }
+                        </div>
+                    </c:if>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Contraseña</label>
+                    <input type="password" class="form-control" name="pwd"
+                           id="pwd" placeholder="Contraseña">
+                    <c:if test="${not empty requestScope.msgErrorPwd }" >
+                        <div class="alert alert-danger" role="alert">
+                            ${ requestScope.msgErrorPwd }
+                        </div>
+                    </c:if>
 
-        <br>
+                </div>
+                <div class="container">              
+                    <button type="submit" class="btn btn-primary">Login (Ver listas)</button>
+                </div>
+            </form>
 
-        <c:if test="${not empty requestScope.msgErrorLogin }" >
-            <div class="alert alert-danger" role="alert">
-                ${requestScope.msgErrorLogin}
-            </div>
-        </c:if>
+            <br>
+
+            <c:if test="${not empty requestScope.msgErrorLogin }" >
+                <div class="alert alert-danger" role="alert">
+                    ${requestScope.msgErrorLogin}
+                </div>
+            </c:if>
+
+        </div>
 
     </body>
+
+    <footer>
+        <%@include file="WEB-INF/vista/pie.jspf" %>
+    </footer>
 </html>
