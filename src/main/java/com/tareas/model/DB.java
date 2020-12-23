@@ -26,6 +26,11 @@ public class DB {
         tareas.put(7, new Tarea(7, "Abrir paquete", "Laura", "in progress"));
         tareas.put(8, new Tarea(8, "Rematar", "Laura", "done"));
         
+        tareas.put(9, new Tarea(9, "Comprar", "Mikel", "in progress"));
+        tareas.put(10, new Tarea(10, "Dar acceso", "Mikel", "done"));
+        tareas.put(11, new Tarea(11, "Configurar", "Laura", "in progress"));
+        tareas.put(12, new Tarea(12, "Revisar", "Laura", "done"));
+        
 
         usuarios = new HashSet<Usuario>();
         usuarios.add(new Usuario("Mikel", "1234"));
@@ -77,28 +82,7 @@ public class DB {
     public synchronized static void cambiarEstado (Tarea t, String estado){    
         t.setEstado(estado);
         
-    }
-    
-    public synchronized static void cambiarEstadoToDoInProgress (Tarea t) throws CambioEstadoException {
-        
-        if (t.getEstado().equals("to do")){
-            t.setEstado("in progress");
-        } else {
-            throw new CambioEstadoException("El estado de la tarea " + t.getId() + " no es 'To Do'");
-        }
-        
-    }
-    
-    public synchronized static void cambiarEstadoInProgressDone (Tarea t) throws CambioEstadoException {
-        
-        if (t.getEstado().equals("in progress")){
-            t.setEstado("done");
-        } else {
-            throw new CambioEstadoException("El estado de la tarea " + t.getId() + " no es 'In Progress'");
-        }
-        
-    }
-    
+    }   
 
     public synchronized static void altaTarea(Tarea tarea) throws DBException {
         if (tareas.containsKey(tarea.getId())) {

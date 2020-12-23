@@ -17,19 +17,21 @@
 
         <div class="container">
 
+            <h1>Tareas de ${sessionScope.usuario.nombreUsuario}</h1> 
+
+            <hr/>
+
+            <%
+                String usuario = (String) request.getAttribute("usuario");
+                Collection<Tarea> tareasToDo = DB.getTareasToDoDeUsuario(usuario);
+                Collection<Tarea> tareasInProgress = DB.getTareasInProgressDeUsuario(usuario);
+                Collection<Tarea> tareasDone = DB.getTareasDoneDeUsuario(usuario);
+            %>
+
             <div class="row">
                 <div class="col">
 
-                    <%
-                        String usuario = (String) request.getAttribute("usuario");
-                        Collection<Tarea> tareasToDo = DB.getTareasToDoDeUsuario(usuario);
-                        Collection<Tarea> tareasInProgress = DB.getTareasInProgressDeUsuario(usuario);
-                        Collection<Tarea> tareasDone = DB.getTareasDoneDeUsuario(usuario);
-                    %>
 
-                    <h1>Tareas de <%= usuario%></h1> 
-
-                    <hr/>
 
                     <h3>Lista To Do</h3> 
 
@@ -38,8 +40,7 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Descripcion</th>
-                                <th scope="col">Subir Estado</th>
-                                <th scope="col">Bajar Estado</th>
+                                <th scope="col">Cambiar Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,19 +49,15 @@
                             <tr>
                                 <th scope="row"><%= t.getId()%></th>
                                 <td><%= t.getDescripcion()%></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=bajar" > <-- </a></td>
+                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a> </td>
 
                             </tr>
                             <% }%>
                         </tbody>
                     </table>
 
-                    <br>
-
-                    <button type="button" class="btn btn-info" > --> </button>
-
-                    <hr />
+                </div>
+                <div class="col">
 
                     <h3>Lista In Progress</h3> 
 
@@ -69,6 +66,7 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Descripcion</th>
+                                <th scope="col">Cambiar Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,18 +75,16 @@
                             <tr>
                                 <th scope="row"><%= t.getId()%></th>
                                 <td><%= t.getDescripcion()%></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=bajar" > <-- </a></td>
+                                <td> <a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=bajar" >  <--  </a>
+                                    <a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" >  -->  </a> </td>
+
                             </tr>
                             <% }%>
                         </tbody>
                     </table>
+                </div>
 
-                    <hr />
-
-                    <button type="button" class="btn btn-info"> --> </button>
-
-                    <hr />
+                <div class="col">
 
                     <h3>Lista Done</h3> 
 
@@ -97,6 +93,7 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Descripcion</th>
+                                <th scope="col">Cambiar Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,26 +102,24 @@
                             <tr>
                                 <th scope="row"><%= t.getId()%></th>
                                 <td><%= t.getDescripcion()%></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a></td>
-                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=bajar" > <-- </a></td>
+                                <td><a href="cambiar-estado?id=<%= t.getId()%>&usuario=<%=usuario%>&subirOBajar=subir" > --> </a> </td>
                             </tr>
                             <% }%>
                         </tbody>
                     </table>
 
-                    <hr />
-
-                    <button type="button" class="btn btn-info"> --> </button>
-
-
-                    <hr />
-
                 </div>
-            </div>
 
+                <hr />
+
+                <hr />
+
+            </div>
         </div>
 
-    </body>
+    </div>
+
+</body>
 </html>
 
 
