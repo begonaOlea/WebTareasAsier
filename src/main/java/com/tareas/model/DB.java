@@ -1,6 +1,7 @@
 
 package com.tareas.model;
 
+import com.tareas.excepciones.CambioEstadoException;
 import com.tareas.excepciones.DBException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,8 +38,13 @@ public class DB {
     public synchronized static Collection<Tarea> getAllTareas() {
         return tareas.values();
     }
+    
+    public synchronized static Tarea getTareaPorId(int id){    
+        Tarea t = tareas.get(id);
+        return t;
+    }
 
-    public static Collection<Tarea> getTareasToDoDeUsuario(String nombreUsuario) {
+    public synchronized static Collection<Tarea> getTareasToDoDeUsuario(String nombreUsuario) {
         Set<Tarea> tareasToDoDeUsuario = new HashSet<Tarea>();
         for (Tarea t : tareas.values()) {
             if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("to do")) {
@@ -48,7 +54,7 @@ public class DB {
         return tareasToDoDeUsuario;
     }    
     
-    public static Collection<Tarea> getTareasInProgressDeUsuario(String nombreUsuario) {
+    public synchronized static Collection<Tarea> getTareasInProgressDeUsuario(String nombreUsuario) {
         Set<Tarea> tareasInProgressDeUsuario = new HashSet<Tarea>();
         for (Tarea t : tareas.values()) {
             if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("in progress")) {
@@ -58,7 +64,7 @@ public class DB {
         return tareasInProgressDeUsuario;
     } 
     
-    public static Collection<Tarea> getTareasDoneDeUsuario(String nombreUsuario) {
+    public synchronized static Collection<Tarea> getTareasDoneDeUsuario(String nombreUsuario) {
         Set<Tarea> tareasDoneDeUsuario = new HashSet<Tarea>();
         for (Tarea t : tareas.values()) {
             if (t.getNombreUsuario().equals(nombreUsuario) && t.getEstado().equals("done")) {
@@ -67,6 +73,31 @@ public class DB {
         }
         return tareasDoneDeUsuario;
     } 
+    
+    public synchronized static void cambiarEstado (Tarea t, String estado){    
+        t.setEstado(estado);
+        
+    }
+    
+    public synchronized static void cambiarEstadoToDoInProgress (Tarea t) throws CambioEstadoException {
+        
+        if (t.getEstado().equals("to do")){
+            t.setEstado("in progress");
+        } else {
+            throw new CambioEstadoException("El estado de la tarea " + t.getId() + " no es 'To Do'");
+        }
+        
+    }
+    
+    public synchronized static void cambiarEstadoInProgressDone (Tarea t) throws CambioEstadoException {
+        
+        if (t.getEstado().equals("in progress")){
+            t.setEstado("done");
+        } else {
+            throw new CambioEstadoException("El estado de la tarea " + t.getId() + " no es 'In Progress'");
+        }
+        
+    }
     
 
     public synchronized static void altaTarea(Tarea tarea) throws DBException {

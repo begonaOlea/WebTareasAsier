@@ -28,7 +28,7 @@ public class ListasTareasServlet extends HttpServlet {
         boolean valido = true;
 
         if (usuario == null || usuario.trim().length() == 0) {
-            msgErrorUsuario = "Debe indicar el email del usuario";
+            msgErrorUsuario = "Debe indicar un nombre de usuario";
             valido = false;
         }
      
@@ -58,7 +58,7 @@ public class ListasTareasServlet extends HttpServlet {
             req.setAttribute("pwd", pwd);
         } else {
             jspAMostrar = "index.jsp";
-            req.setAttribute("msgErrorEmail", msgErrorUsuario);
+            req.setAttribute("msgErrorUsuario", msgErrorUsuario);
             req.setAttribute("msgErrorPwd", msgErrorPwd);
             req.setAttribute("msgErrorLogin", msgErrorLogin);
         }

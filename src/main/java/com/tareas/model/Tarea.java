@@ -13,6 +13,10 @@ public class Tarea {
         this.nombreUsuario = nombreUsuario;
         this.estado = estado;
     }
+    
+    public Tarea (){
+        
+    }
 
     public int getId() {
         return id;
