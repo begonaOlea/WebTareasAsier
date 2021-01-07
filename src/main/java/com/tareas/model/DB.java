@@ -86,7 +86,7 @@ public class DB {
 
     public synchronized static void altaTarea(Tarea tarea) throws DBException {
         if (tareas.containsKey(tarea.getId())) {
-            throw new DBException("El libro ya existe con el id " + tarea.getId());
+            throw new DBException("La tarea ya existe con el id " + tarea.getId());
         }
         tareas.put(tarea.getId(), tarea);
     }
